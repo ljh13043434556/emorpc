@@ -8,6 +8,7 @@
             "email": "790928939@qq.com"
         }
     ],
+    "minimum-stability": "dev",
     "require": {},
     "autoload": {
         "psr-4": {
