@@ -1,0 +1,17 @@
+{
+    "name": "ljh13043434556/emorpc",
+    "description": "rpc client",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ljh13043434556",
+            "email": "790928939@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ljh13043434556\\emorpc\\": "src/"
+        }
+    }
+}
