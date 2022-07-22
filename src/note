@@ -1,0 +1,87 @@
+[gjp]
+配置文件
+config/rpcclient.php
+
+
+//仓库服务
+
+1.查所有仓库
+$result = app('rpc')->gjp->WarehouseInterface->queryktypelist();
+
+2.仓库商品查询
+
+$param = [
+    'pagesize' => 50,       //每页结果数量，默认1,最大值100
+    'pageno' => 1,          //页数，从1开始
+    'ptypeids' => [],       //商品id，参数为空时查询所有商品列表
+];
+app('rpc')->gjp->ProductInterface->queryproductinfo($param)
+
+
+//商品服务
+
+1.上传更新
+app('rpc')->gjp->ProductInterface->uploadproducts($param);
+
+
+
+
+服务调用方式：
+1.推送商品
+$product = StoreProduct::getById(111);
+$result = app('rpcGjp')->uploadproducts($product);
+
+["requestid"]=>
+  string(19) "1075839371915165844"
+  ["iserror"]=>
+  bool(false)
+  ["response"]=>
+  array(3) {
+    ["issuccess"]=>
+    bool(true)
+    ["message"]=>
+    string(21) "刷新宝贝成功。"
+    ["totalresults"]=>
+    int(1)
+  }
+
+2.查询仓库列表
+app('rpcGjp')->queryktypelist();
+
+
+3.查询商品
+$param = [
+    'pagesize' => 50,       //每页结果数量，默认1,最大值100
+    'pageno' => 1,          //页数，从1开始
+    'ptypeids' => [],       //商品id，参数为空时查询所有商品列表
+];
+app('rpcGjp')->queryproductinfo($param)
+
+
+4.批量查询库存
+$param = ['numids' =>[], 'ktypeids' => []]
+app('rpcGjp')->batchquerysaleqty($param)
+
+
+5.查询商品库存
+$param = ['numid' =>'123', 'ktypeids' => []]
+app('rpcGjp')->querysaleqty($param)
+
+
+6.批量上传订单
+$list = StoreOrder::page(1, 2)->order('id DESC')->select();
+$result = app('rpcGjp')->uploadsaleorders($list);
+
+
+7.订单处理状态查询
+$order = StoreOrder::page(1, 1)->order('id DESC')->find();
+$result = app('rpcGjp')->querytradestatus($order->id);
+
+
+8.订单查询
+$order = StoreOrder::page(1, 1)->order('id DESC')->find();
+$result = app('rpcGjp')->querySaleOrder($order->id);
+
+
+[快递查询]
+
