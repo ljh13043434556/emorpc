@@ -14,7 +14,7 @@ class DataProductServices
             $result = app('rpc', [], true)->dataEmoProduct->EmoProduct->$name($arguments[0]);
             return $result;
         }catch (\Exception $e) {
-            throw new \RpcException($e->getMessage());
+            throw new RpcException($e->getMessage());
 
         }
     }
