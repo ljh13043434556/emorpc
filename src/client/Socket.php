@@ -46,7 +46,7 @@ class Socket
         $len  = unpack('N', $data);
         $data = '';
         $try  = 3;
-        if (strlen($data) < $len[1] && $try > 0) {
+        while (strlen($data) < $len[1] && $try > 0) {
             $data .= fread($fp, $len[1]);
             $try--;
             usleep(1);
